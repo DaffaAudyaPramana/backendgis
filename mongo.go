@@ -151,7 +151,7 @@ func GetGeoIntersectsDoc(db *mongo.Database, collname string, coordinates Polygo
 		"geometry": bson.M{
 			"$geoIntersects": bson.M{
 				"$geometry": bson.M{
-					"type":        "Point",
+					"type":        "Polygon",
 					"coordinates": coordinates.Coordinates,
 				},
 			},
