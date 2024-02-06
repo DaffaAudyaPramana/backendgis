@@ -8,18 +8,24 @@ import (
 var privatekey = ""
 var publickey = ""
 var encode = ""
-var dbname = "geojson"
-var collname = "bandaaceh"
+var dbname = "datajson"
+var collname = "get"
 
 func TestGeoIntersects(t *testing.T) {
-	mconn := SetConnection("mongoenv", dbname)
-	coordinates := Point{
-		Coordinates: []float64{
-			103.60768133536988, -1.628526295003084,
+	mconn := SetConnection("MONGOSTRING", dbname)
+	coordinates := Polygon{
+		Coordinates: [][][]float64{
+			{
+				{100.5918079639361, -0.45832970470556234},
+				{100.59180519679398, -0.4584272433564678},
+				{100.5918916699963, -0.4584327774636705},
+				{100.59189305356739, -0.4583317799957598},
+				{100.5918079639361, -0.45832970470556234},
+			},
 		},
 	}
-	datagedung := GeoIntersects(mconn, collname, coordinates)
-	fmt.Println(datagedung)
+	name := GeoIntersects(mconn, collname, coordinates)
+	fmt.Println(name)
 }
 
 func TestGeoWithin(t *testing.T) {
@@ -35,19 +41,19 @@ func TestGeoWithin(t *testing.T) {
 			},
 		},
 	}
-	datagedung := GeoWithin(mconn, collname, coordinates)
-	fmt.Println(datagedung)
+	name := GeoWithin(mconn, collname, coordinates)
+	fmt.Println(name)
 }
 
 func TestNear(t *testing.T) {
-	mconn := SetConnection2dsphere("MONGOSTRING", "geojson", "bandaaceh")
+	mconn := SetConnection2dsphere("MONGOSTRING", "geojson", "get")
 	coordinates := Point{
 		Coordinates: []float64{
 			95.30987654321098, 5.556789012345678,
 		},
 	}
-	datagedung := Near(mconn, "bandaaceh", coordinates)
-	fmt.Println(datagedung)
+	name := Near(mconn, "get", coordinates)
+	fmt.Println(name)
 }
 
 func TestNearSphere(t *testing.T) {
@@ -57,8 +63,8 @@ func TestNearSphere(t *testing.T) {
 			95.30987654321098, 5.556789012345678,
 		},
 	}
-	datagedung := NearSphere(mconn, "bandaaceh", coordinates)
-	fmt.Println(datagedung)
+	name := NearSphere(mconn, "get", coordinates)
+	fmt.Println(name)
 }
 
 func TestBox(t *testing.T) {
@@ -69,6 +75,6 @@ func TestBox(t *testing.T) {
 			{95.32355678901234, 5.567990123456789},
 		},
 	}
-	datagedung := Box(mconn, collname, coordinates)
-	fmt.Println(datagedung)
+	name := Box(mconn, collname, coordinates)
+	fmt.Println(name)
 }
