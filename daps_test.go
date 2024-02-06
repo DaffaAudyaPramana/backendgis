@@ -5,9 +5,6 @@ import (
 	"testing"
 )
 
-var privatekey = ""
-var publickey = ""
-var encode = ""
 var dbname = "datajson"
 var collname = "get"
 
