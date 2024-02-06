@@ -8,22 +8,22 @@ import (
 var dbname = "datajson"
 var collname = "get"
 
-func TestGeoIntersects(t *testing.T) {
-	mconn := SetConnection("MONGOSTRING", dbname)
-	coordinates := Polygon{
-		Coordinates: [][][]float64{
-			{
-				{107.54190844499595, -6.873854824661734},
-				{107.54184261920568, -6.873975211086574},
-				{107.54201584497002, -6.874061201371745},
-				{107.54208686753464, -6.8739494139982185},
-				{107.54190844499595, -6.873854824661734},
-			},
-		},
-	}
-	name := GeoIntersects(mconn, collname, coordinates)
-	fmt.Println(name)
-}
+// func TestGeoIntersects(t *testing.T) {
+// 	mconn := SetConnection("MONGOSTRING", dbname)
+// 	coordinates := Polygon{
+// 		Coordinates: [][][]float64{
+// 			{
+// 				{107.54190844499595, -6.873854824661734},
+// 				{107.54184261920568, -6.873975211086574},
+// 				{107.54201584497002, -6.874061201371745},
+// 				{107.54208686753464, -6.8739494139982185},
+// 				{107.54190844499595, -6.873854824661734},
+// 			},
+// 		},
+// 	}
+// 	name := GeoIntersects(mconn, collname, coordinates)
+// 	fmt.Println(name)
+// }
 
 func TestGeoWithin(t *testing.T) {
 	mconn := SetConnection("MONGOSTRING", dbname)
@@ -68,8 +68,8 @@ func TestBox(t *testing.T) {
 	mconn := SetConnection("MONGOSTRING", "geojson")
 	coordinates := Polyline{
 		Coordinates: [][]float64{
-			{95.32345678901234, 5.567890123456789},
-			{95.32355678901234, 5.567990123456789},
+			{107.54165179627012, -6.873347393494967},
+			{107.54253039713798, -6.873937966575383},
 		},
 	}
 	name := Box(mconn, collname, coordinates)

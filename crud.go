@@ -3,6 +3,8 @@ package backendgis
 import (
 	"os"
 
+	"github.com/Befous/BackendGin/helpers"
+	"github.com/Befous/BackendGin/models"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )
@@ -57,8 +59,8 @@ func DeleteGeojson(mconn *mongo.Database, collname string, userdata User) interf
 	return DeleteOneDoc(mconn, collname, filter)
 }
 
-func GeoIntersects(mconn *mongo.Database, collname string, coordinates Polygon) string {
-	return GetGeoIntersectsDoc(mconn, collname, coordinates)
+func GeoIntersects(mconn *mongo.Database, collname string, geospatial models.Geospatial) ([]FullGeoJson, error) {
+	return helpers.GetGeoIntersectsDoc[FullGeoJson](mconn, collname, "geometry", geospatial)
 }
 
 func GeoWithin(mconn *mongo.Database, collname string, coordinates Polygon) string {
