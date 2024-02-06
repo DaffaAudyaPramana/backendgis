@@ -145,7 +145,6 @@ func DocExists[T any](db *mongo.Database, collname string, filter bson.M, doc T)
 	err := db.Collection(collname).FindOne(context.Background(), filter).Decode(&doc)
 	return err == nil
 }
-
 func GetGeoIntersectsDoc(db *mongo.Database, collname string, coordinates Polygon) (result string) {
 	filter := bson.M{
 		"geometry": bson.M{
